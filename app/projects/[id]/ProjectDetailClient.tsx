@@ -4,6 +4,12 @@ import { use } from 'react';
 import Link from 'next/link';
 import ThreeModel from '../../components/ThreeModel';
 
+// Helper function to get the correct path with basePath
+const getAssetPath = (path: string): string => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/dimitry-portfolio' : '';
+  return `${basePath}${path}`;
+};
+
 const projectsData = {
   '1': {
     id: 1,
@@ -182,7 +188,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
             {project.images.map((image: string, index: number) => (
               <div key={index} className="aspect-video bg-slate-100 dark:bg-slate-700 rounded-lg overflow-hidden">
                 <img 
-                  src={image} 
+                  src={getAssetPath(image)} 
                   alt={`${project.title} - Image ${index + 1}`}
                   className="w-full h-full object-cover"
                 />

@@ -3,6 +3,12 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+// Helper function to get the correct path with basePath
+const getAssetPath = (path: string): string => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/dimitry-portfolio' : '';
+  return `${basePath}${path}`;
+};
+
 interface ThreeModelProps {
   modelType: 'cube' | 'triangle' | 'donut' | 'wing' | 'carousel' | 'projet2' | 'projet3';
   scaleMultiplier?: number;
@@ -62,18 +68,22 @@ export default function ThreeModel({ modelType, scaleMultiplier = 1 }: ThreeMode
 
     // Function to handle model loading
     const loadModel = async () => {
-      if (modelType === 'wing' || modelType === 'projet2' || modelType === 'projet3') {
-        // Load GLTF/GLB file for wing (projet 1), projet2, projet3 with dynamic import
+      // For projet3, use a fallback cube since the model was too large
+      if (modelType === 'projet3') {
+        createProceduralShape();
+        return;
+      }
+      
+      if (modelType === 'wing' || modelType === 'projet2') {
+        // Load GLTF/GLB file for wing (projet 1), projet2 with dynamic import
         try {
           const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
           const loader = new GLTFLoader();
           
           // Try GLTF first (JSON format), then GLB (binary)
           const modelPath = modelType === 'wing'
-            ? '/models/kagome.gltf'
-            : modelType === 'projet2'
-              ? '/models/projet2/projet2.gltf'
-              : '/models/projet3/projet3.glb';
+            ? getAssetPath('/models/kagome.gltf')
+            : getAssetPath('/models/projet2/projet2.gltf');
           
           loader.load(
             modelPath,
