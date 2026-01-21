@@ -5,7 +5,9 @@ import * as THREE from 'three';
 
 // Helper function to get the correct path with basePath
 const getAssetPath = (path: string): string => {
-  const basePath = process.env.NODE_ENV === 'production' ? '/dimitry-portfolio' : '';
+  // Check if we're on GitHub Pages by looking at the URL
+  const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.includes('github.io');
+  const basePath = isGitHubPages ? '/dimitry-portfolio' : '';
   return `${basePath}${path}`;
 };
 
