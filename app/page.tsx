@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import TopographicBackground from "./components/TopographicBackground";
 import ThreeModel from "./components/ThreeModel";
 
@@ -63,7 +64,7 @@ export default function Home() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <a
+              <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
                 className="bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block border border-slate-700"
@@ -95,7 +96,7 @@ export default function Home() {
                     Voir les détails →
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
