@@ -1,0 +1,162 @@
+{
+    "asset": {
+        "generator": "SOLIDWORKSGLTF",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Défaut",
+            "nodes": [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "matrix": [
+                0.7187856651042737,
+                0.22277966076617348,
+                0.6585714770543252,
+                0.0,
+                -0.4177425554259488,
+                0.8955940849519587,
+                0.15297840496377893,
+                0.0,
+                -0.5557322422055472,
+                -0.3850720163137962,
+                0.7368047348010343,
+                0.0,
+                -0.1231593313605631,
+                -0.11835812271073018,
+                0.2346868644895098,
+                1.0
+            ],
+            "camera": 0,
+            "name": "current camera"
+        },
+        {
+            "mesh": 0,
+            "name": "kagome"
+        }
+    ],
+    "cameras": [
+        {
+            "type": "orthographic",
+            "orthographic": {
+                "xmag": 0.06914156454806353,
+                "ymag": 0.05342757260532181,
+                "zfar": 0.438403631995542,
+                "znear": 0.24817098483724262
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "primitives": [
+                {
+                    "attributes": {
+                        "POSITION": 1,
+                        "NORMAL": 2
+                    },
+                    "indices": 0,
+                    "material": 0,
+                    "mode": 4
+                }
+            ]
+        }
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 232650,
+            "type": "SCALAR",
+            "min": [
+                0
+            ],
+            "max": [
+                121225
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 121226,
+            "type": "VEC3",
+            "min": [
+                9.226673114426376e-8,
+                -0.0042281728237867355,
+                -0.00989999994635582
+            ],
+            "max": [
+                0.10000000149011612,
+                0.007919955998659134,
+                0.020099999383091927
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 121226,
+            "type": "VEC3",
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "PlasticMT11150",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.7154654477573726,
+                    0.12474095009597318,
+                    0.0,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.9300000071525574
+            }
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 930600,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 930600,
+            "byteLength": 1454712,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 2385312,
+            "byteLength": 1454712,
+            "byteStride": 12,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "uri": "kagome.bin",
+            "byteLength": 3840024
+        }
+    ]
+}

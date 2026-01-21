@@ -1,65 +1,128 @@
-import Image from "next/image";
+"use client";
+
+import TopographicBackground from "./components/TopographicBackground";
+import ThreeModel from "./components/ThreeModel";
+
+const projects = [
+  {
+    id: 1,
+    title: "Projet 1",
+    description: "inflatable wing",
+    modelType: "wing" as const,
+    tags: ["CAO", "Simulation", "Prototypage"],
+  },
+  {
+    id: 2,
+    title: "Projet 2",
+    description: "kickstarter project",
+    modelType: "projet2" as const,
+    tags: ["Analyse", "Design", "Fabrication"],
+  },
+  {
+    id: 3,
+    title: "Projet 3",
+    description: "hive robotics projet",
+    modelType: "projet3" as const,
+    tags: ["Optimisation", "Tests", "Production"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen relative">
+      <TopographicBackground />
+      {/* Header */}
+      <header className="border-b border-slate-200 dark:border-slate-700 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-10">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dimitry Portfolio</h1>
+            <div className="flex gap-6">
+              <a href="#about" className="text-slate-300 hover:text-white transition">À propos</a>
+              <a href="#projects" className="text-slate-300 hover:text-white transition">Projets</a>
+              <a href="#contact" className="text-slate-300 hover:text-white transition">Contact</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero Section */}
+        <section id="about" className="mb-20 text-center py-12">
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Ingénieur Mécanique
+          </h2>
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+            Passionné par l'innovation et le design mécanique, je crée des solutions techniques pour résoudre des problèmes complexes.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="mb-20">
+          <h3 className="text-3xl font-bold text-white mb-8 text-center">
+            Mes Projets
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <a
+                key={project.id}
+                href={`/projects/${project.id}`}
+                className="bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer block border border-slate-700"
+              >
+                <div className="relative h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                  <ThreeModel
+                    modelType={project.modelType}
+                    scaleMultiplier={project.id === 1 ? 1.6 : 1}
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-white mb-2">
+                    {project.title}
+                  </h4>
+                  <p className="text-slate-300 mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-blue-900/50 text-blue-200 rounded-full text-sm border border-blue-700"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-4 text-blue-400 font-medium flex items-center gap-2">
+                    Voir les détails →
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="text-center py-12 bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-lg border border-slate-700">
+          <h3 className="text-3xl font-bold text-white mb-4">
+            Me Contacter
+          </h3>
+          <p className="text-slate-300 mb-6">
+            Vous avez un projet ? N'hésitez pas à me contacter.
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:contact@example.com"
+            className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            Envoyer un email
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-700 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
+          <p>© 2026 Dimitry - Ingénieur Mécanique. Tous droits réservés.</p>
+        </div>
+      </footer>
     </div>
   );
 }
